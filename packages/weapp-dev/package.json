@@ -77,13 +77,13 @@
     "build": "tsdown"
   },
   "dependencies": {
-    "@weapp-core/escape": "^7.0.0",
+    "@weapp-core/escape": "^8.0.0",
     "cac": "^7.0.0",
     "consola": "^3.4.2",
     "listr2": "^10.2.1",
     "lodash-es": "catalog:",
     "miniprogram-ci": "catalog:",
-    "node-html-parser": "^7.1.0",
+    "node-html-parser": "^8.0.4",
     "ora": "^9.3.0",
     "postcss-selector-parser": "^7.1.1",
     "terminate": "^2.8.0",
@@ -94,7 +94,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "catalog:",
-    "@typescript/native-preview": "7.0.0-dev.20260417.1",
+    "@typescript/native-preview": "7.0.0-dev.20260705.1",
     "@weapp-dev/miniprogram-json-schema": "workspace:*",
     "miniprogram-api-typings": "catalog:",
     "publint": "catalog:"
