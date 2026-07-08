@@ -37,9 +37,8 @@ export const initWeappDevContext = async () => {
 
   // 处理src: 如果用户配置的srcRoot是默认值"src"，但项目根目录下没有"src"文件夹而有"miniprogram"文件夹，则自动切换srcRoot为"miniprogram"
   if (WeappDevContext.config.srcRoot === "src" && !isDirectory(resolve("src"))) {
-    const projectConfigSrc = getProjectConfigJsonRoot();
-    if (projectConfigSrc && isDirectory(resolve(projectConfigSrc))) {
-      WeappDevContext.config.srcRoot = projectConfigSrc;
+    if (!isDirectory(resolve("miniprogram"))) {
+      console.warn("未检测到 src 或 miniprogram 文件夹，请检查项目目录结构 srcRoot 配置是否正确");
     } else {
       WeappDevContext.config.srcRoot = "miniprogram";
     }
