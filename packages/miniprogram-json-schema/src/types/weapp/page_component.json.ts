@@ -12,6 +12,7 @@ export interface WeappPageComponentJson {
   };
   "mini-ios"?: IOriginalPageJSON;
   "mini-android"?: IOriginalPageJSON;
+  "mini-ohos"?: IOriginalPageJSON;
   "mini-weixin"?: IOriginalPageJSON;
   disableScroll?: boolean;
   disableSwipeBack?: boolean;
@@ -131,4 +132,7 @@ export interface IOriginalPageJSON {
 export interface ISkylineFeatures {
   defaultContentBox?: boolean;
   defaultDisplayBlock?: boolean;
+  tagNameStyleIsolation?: "isolated" | "legacy";
+  enableScrollViewAutoSize?: boolean;
+  keyframeStyleIsolation?: "isolated" | "legacy";
 }

@@ -1,4 +1,4 @@
-export type IPlatform = "mini-android" | "mini-ios" | "mini-weixin";
+export type IPlatform = "mini-android" | "mini-ios" | "mini-ohos" | "mini-weixin";
 
 export interface WeappAppJson {
   pages: string[];
@@ -34,6 +34,9 @@ export interface WeappAppJson {
     | string;
   subPackages?: ISubPackageItem[];
   subpackages?: ISubPackageItem[];
+  agent?: {
+    [k: string]: unknown;
+  };
   chatTools?: {
     root: string;
     entryPagePath: string;
@@ -144,6 +147,8 @@ export interface WeappAppJson {
       iosVersionEnd?: string;
       androidVersionBegin?: string;
       androidVersionEnd?: string;
+      ohosVersionBegin?: string;
+      ohosVersionEnd?: string;
     } & ISkylineFeatures;
   };
   componentFramework?: "exparser" | "glass-easel";
@@ -188,6 +193,9 @@ export interface IOriginAppJSON {
     | string;
   subPackages?: ISubPackageItem[];
   subpackages?: ISubPackageItem[];
+  agent?: {
+    [k: string]: unknown;
+  };
   chatTools?: {
     root: string;
     entryPagePath: string;
@@ -298,6 +306,8 @@ export interface IOriginAppJSON {
       iosVersionEnd?: string;
       androidVersionBegin?: string;
       androidVersionEnd?: string;
+      ohosVersionBegin?: string;
+      ohosVersionEnd?: string;
     } & ISkylineFeatures;
   };
   componentFramework?: "exparser" | "glass-easel";
@@ -358,6 +368,8 @@ export interface ISubPackageItem {
   useExtendedLib?: {
     [k: string]: string | boolean;
   };
+  componentFramework?: string;
+  renderer?: string;
 }
 export interface ITabBar {
   custom?: boolean;
@@ -380,4 +392,7 @@ export interface IAppBar {
 export interface ISkylineFeatures {
   defaultContentBox?: boolean;
   defaultDisplayBlock?: boolean;
+  tagNameStyleIsolation?: "isolated" | "legacy";
+  enableScrollViewAutoSize?: boolean;
+  keyframeStyleIsolation?: "isolated" | "legacy";
 }

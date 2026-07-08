@@ -106,6 +106,7 @@ export interface IPageJSON {
   };
   "mini-ios"?: IOriginalPageJSON;
   "mini-android"?: IOriginalPageJSON;
+  "mini-ohos"?: IOriginalPageJSON;
   "mini-weixin"?: IOriginalPageJSON;
   disableScroll?: boolean;
   disableSwipeBack?: boolean;
@@ -225,6 +226,9 @@ export interface IOriginalPageJSON {
 export interface ISkylineFeatures {
   defaultContentBox?: boolean;
   defaultDisplayBlock?: boolean;
+  tagNameStyleIsolation?: "isolated" | "legacy";
+  enableScrollViewAutoSize?: boolean;
+  keyframeStyleIsolation?: "isolated" | "legacy";
 }
 export interface IWindow {
   backgroundColorTop?: string;
@@ -269,6 +273,8 @@ export interface ISubPackageItem {
   useExtendedLib?: {
     [k: string]: string | boolean;
   };
+  componentFramework?: string;
+  renderer?: string;
 }
 export interface ITabBar {
   custom?: boolean;
