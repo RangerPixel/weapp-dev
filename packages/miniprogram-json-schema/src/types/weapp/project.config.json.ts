@@ -171,7 +171,7 @@ export interface ISkeletonConfig {
   };
   image?: {
     color: string;
-    shape: "circle" | "rect";
+    shape: "" | "circle" | "rect";
     shapeOpposite: string[];
   };
   button?: {
