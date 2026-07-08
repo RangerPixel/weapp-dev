@@ -17,7 +17,9 @@ export enum CssProcessorEnum {
 
 export type WeappCssProcessorKey = keyof typeof CssProcessorEnum;
 
-export const WeappCssProcessorList = Object.values(CssProcessorEnum);
+export const WeappCssProcessorList = Object.values(CssProcessorEnum).sort(
+  (a, b) => b.length - a.length,
+) as WeappCssProcessorKey[];
 
 /**
  * 获取 WXSS 文件最终路径
