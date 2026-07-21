@@ -27,6 +27,7 @@ export function vitePluginDevFileWatcher(): Plugin {
     async configureServer(server) {
       // 不监听dist下的文件变化
       server.watcher.unwatch(`${path.resolve(process.cwd(), WeappDevContext.config.outDir)}/**`);
+      server.watcher.unwatch(`${path.resolve(process.cwd(), "vite.config.ts")}`);
 
       // 判断是 src 目录下的文件变化
       const isSrcRoot = (_path: string) => {
