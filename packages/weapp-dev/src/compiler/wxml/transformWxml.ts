@@ -8,6 +8,7 @@ import { getAssetPrefix, replaceAssetPaths } from "@/compiler/replace";
 import { compileAppWxss } from "@/compiler/wxss/compileWxss";
 import { isIncludeAllClassList } from "@/compiler/wxss/globalClassCache";
 import { WeappDevContext } from "@/config/mergedConfig";
+import type { WeappTwContext } from "@/types/weapp-tw";
 import { ensureFile } from "@/utils/fs/ensureFile";
 import { fsStat } from "@/utils/fs/fs";
 import { wxmlLogger } from "@/utils/logger";
@@ -35,7 +36,7 @@ export async function transformAllWxmlFiles(isProd: boolean = false) {
 }
 
 // 这个ctx只负责转换wxml的class
-let wxmlCtx: any | null = null;
+let wxmlCtx: WeappTwContext | null = null;
 
 export interface TransformWxmlFileOptions {
   wxmlList: string | string[];
@@ -123,7 +124,10 @@ export async function transformWxmlFile(options: TransformWxmlFileOptions) {
       // 转义 WXML tw class
       let transformed = content;
       if (weappTwConfig.enable && wxmlCtx) {
-        transformed = await wxmlCtx!.transformWxml(content);
+        transformed = await wxmlCtx!.transformWxml(content, {
+          inlineWxs: weappTwConfig.inlineWxs,
+          disabledDefaultTemplateHandler: weappTwConfig.disabledDefaultTemplateHandler,
+        });
       }
 
       // 替换资源路径

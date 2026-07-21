@@ -3,16 +3,16 @@ import type { UserConfig as ViteUserConfig, ViteDevServer } from "vite";
 
 import type { ResolvedWeappDevConfig } from "@/config/weappDevConfig";
 import { DefaultWeappDevConfig } from "@/config/weappDevConfig";
+import type { WeappTwContext } from "@/types/weapp-tw";
 import { isDirectory } from "@/utils/fs/isDirectory";
 import { resolve } from "@/utils/fs/resolve";
-import { getProjectConfigJsonRoot } from "@/weapp/projectConfigJson";
 import { isTailwindcssEnabled } from "@/weapp/tw";
 
 interface IWeappDevCtx {
   viteConfig: ViteUserConfig;
   viteDevServer?: ViteDevServer;
   config: ResolvedWeappDevConfig;
-  weappTwCtx?: any;
+  weappTwCtx?: WeappTwContext;
 }
 
 export const WeappDevContext: IWeappDevCtx = {

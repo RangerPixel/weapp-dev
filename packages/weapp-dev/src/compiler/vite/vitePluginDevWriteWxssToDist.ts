@@ -33,7 +33,23 @@ export function vitePluginDevWriteWxssToDist(): Plugin {
 
         // 需要转换tw class
         if (id.endsWith(`app.${wxssExt}`) && weappTwCtx) {
-          code = (await weappTwCtx.transformWxss(code)).css;
+          code = (
+            await weappTwCtx.transformWxss(code, {
+              postcssOptions: config.weappTwConfig?.postcssOptions,
+              cssRemoveHoverPseudoClass: config.weappTwConfig?.cssRemoveHoverPseudoClass,
+              cssPresetEnv: config.weappTwConfig?.cssPresetEnv,
+              autoprefixer: config.weappTwConfig?.autoprefixer,
+              cssCalc: config.weappTwConfig?.cssCalc,
+              cssPreflight: config.weappTwConfig?.cssPreflight,
+              cssPreflightRange: config.weappTwConfig?.cssPreflightRange,
+              cssChildCombinatorReplaceValue: config.weappTwConfig?.cssChildCombinatorReplaceValue,
+              injectAdditionalCssVarScope: config.weappTwConfig?.injectAdditionalCssVarScope,
+              cssSelectorReplacement: config.weappTwConfig?.cssSelectorReplacement,
+              rem2rpx: config.weappTwConfig?.rem2rpx,
+              px2rpx: config.weappTwConfig?.px2rpx,
+              unitsToPx: config.weappTwConfig?.unitsToPx,
+            })
+          ).css;
         }
       }
 
