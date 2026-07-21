@@ -14,9 +14,7 @@ import { vitePluginDevWriteWxssToDist } from "./vitePluginDevWriteWxssToDist";
  */
 export async function getWxssViteConfig(isProd = false) {
   const { mergeConfig } = await import("vite");
-  const { UnifiedViteWeappTailwindcssPlugin } = await import("weapp-tailwindcss/vite");
-  const { config, viteConfig } = WeappDevContext;
-  const { weappTwConfig } = config;
+  const { viteConfig } = WeappDevContext;
 
   // 默认启用 host，允许局域网访问（手机真机预览需要）
   // 用户可在 vite.config.ts 中显式配置 host: false 来关闭
@@ -37,10 +35,6 @@ export async function getWxssViteConfig(isProd = false) {
         isProd,
       ),
       plugins: [
-        weappTwConfig.enable
-          ? UnifiedViteWeappTailwindcssPlugin({ ...weappTwConfig, logLevel: "silent" })
-          : undefined,
-
         vitePluginReplaceAssetPaths(isProd),
         vitePluginDevWriteWxssToDist(),
         vitePluginDevFileWatcher(),
