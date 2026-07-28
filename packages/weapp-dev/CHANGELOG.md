@@ -1,5 +1,21 @@
 # weapp-dev
 
+## 0.0.8
+
+### Patch Changes
+
+- [`7aa1b17`](https://github.com/ReySun/weapp-dev/commit/7aa1b175ba32d2fa938660e0e770c3edb80dd207) Thanks [@ReySun](https://github.com/ReySun)! - refactor(weapp-dev): add type safety for weapp tw context and pass config
+
+  1. 新增 weapp-tw 类型定义文件，创建 WeappTwContext 类型
+  2. 将各处的 any 类型上下文替换为强类型的 WeappTwContext
+  3. 为 wxml 和 wxss 转换方法传入完整的配置参数
+
+- [`7aa1b17`](https://github.com/ReySun/weapp-dev/commit/7aa1b175ba32d2fa938660e0e770c3edb80dd207) Thanks [@ReySun](https://github.com/ReySun)! - fix: 优化 srcRoot 处理逻辑，移除不必要的项目配置检查
+  fix: 添加文件存在性检查，避免复制不存在或内容一致的文件导致开发者工具刷新的问题
+  fix: 在 tsconfig.json 中添加 ignoreDeprecations 配置以处理弃用警告
+  fix: 对 WeappCssProcessorList 进行排序以优化处理逻辑，避免 css 被优先选择作为默认 css 处理器的问题
+  fix: 忽略 vite.config.ts 文件的监听
+
 ## 0.0.7
 
 ### Patch Changes
