@@ -15,7 +15,10 @@
     "fmt:check": "oxfmt --check",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
@@ -23,7 +26,8 @@
     "@types/node": "25.9.3",
     "oxfmt": "^0.57.0",
     "oxlint": "^1.68.0",
-    "tsx": "catalog:"
+    "tsx": "catalog:",
+    "vitepress": "^1.6.4"
   },
   "packageManager": "pnpm@10.24.0"
 }
