@@ -22,10 +22,10 @@ Tailwind 是**自动检测**的，满足任一条件即启用：
 
 这是 `weapp-dev` 的主动选择：**出于小程序运行环境的兼容性考虑**（小程序的 WXSS 渲染能力受限，Tailwind CSS v4 基于现代 CSS 特性的生成结果无法在小程序中可靠运行），`weapp-dev` 将长期停留在 weapp-tailwindcss v4 + Tailwind CSS v3 的组合，**不会升级到 Tailwind CSS v4**。因此你的项目必须搭配 Tailwind CSS v3 使用，即：
 
-| 组件 | 版本 |
-| --- | --- |
+| 组件                                              | 版本 |
+| ------------------------------------------------- | ---- |
 | weapp-tailwindcss（weapp-dev 内置，无需手动安装） | `^4` |
-| tailwindcss（你的项目依赖） | `^3` |
+| tailwindcss（你的项目依赖）                       | `^3` |
 
 如果安装了 `tailwindcss@4`，PostCSS 插件形态（`tailwindcss: {}`）已变更，会导致样式无法生成。
 

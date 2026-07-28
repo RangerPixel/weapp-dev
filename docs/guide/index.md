@@ -20,15 +20,15 @@
 
 ## 核心能力
 
-| 能力 | 实现 |
-| --- | --- |
-| TypeScript 编译 | [tsdown](https://github.com/rolldown/tsdown)（rolldown 驱动），开发模式 watch 增量编译 |
-| 自动分包拆包 | 自定义插件 `vitePluginAutoWeappSplitChunk`，按小程序分包结构拆分公共代码 |
-| 样式编译 | [Vite](https://vite.dev/) 样式管道 + [weapp-tailwindcss](https://github.com/sonofmagic/weapp-tailwindcss)，输出 `.wxss` |
-| WXML 转译 | weapp-tailwindcss/core 转义类名；自动注册 Vant 组件到页面 JSON |
-| npm 构建 | [miniprogram-ci](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html)，支持构建缓存与子包依赖分配 |
-| 静态资源 CDN | 自动改写 WXML / WXSS / JS 中的资源绝对路径为 CDN 地址 |
-| 文件复制 | 兼容 tsdown `copy` 配置，开发模式支持新增文件增量复制 |
+| 能力            | 实现                                                                                                                    |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| TypeScript 编译 | [tsdown](https://github.com/rolldown/tsdown)（rolldown 驱动），开发模式 watch 增量编译                                  |
+| 自动分包拆包    | 自定义插件 `vitePluginAutoWeappSplitChunk`，按小程序分包结构拆分公共代码                                                |
+| 样式编译        | [Vite](https://vite.dev/) 样式管道 + [weapp-tailwindcss](https://github.com/sonofmagic/weapp-tailwindcss)，输出 `.wxss` |
+| WXML 转译       | weapp-tailwindcss/core 转义类名；自动注册 Vant 组件到页面 JSON                                                          |
+| npm 构建        | [miniprogram-ci](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html)，支持构建缓存与子包依赖分配         |
+| 静态资源 CDN    | 自动改写 WXML / WXSS / JS 中的资源绝对路径为 CDN 地址                                                                   |
+| 文件复制        | 兼容 tsdown `copy` 配置，开发模式支持新增文件增量复制                                                                   |
 
 ## 技术栈
 

@@ -55,10 +55,11 @@ export default defineConfig({
 2. 配置中声明的依赖被**移动**到对应子包目录 `dist/<子包名>/miniprogram_npm/`，主包中的副本被删除。
 
 ::: warning 注意事项
+
 - 子包名必须与 `app.json` 中 `subPackages[].root` 一致；
 - 被分配到子包的依赖**不能**再被主包页面引用，否则运行时报模块找不到；
 - 一个依赖只能分配给一个子包。
-:::
+  :::
 
 配合 [TS 自动分包拆包](/guide/typescript#自动分包拆包)，JS 代码与 npm 依赖都能做到按需入包。
 

@@ -3,7 +3,8 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "weapp-dev",
-  description: "小程序原生开发增强工具 —— Vite + tsdown 驱动的 TypeScript / Tailwind CSS 小程序构建工具链",
+  description:
+    "小程序原生开发增强工具 —— Vite + tsdown 驱动的 TypeScript / Tailwind CSS 小程序构建工具链",
   lang: "zh-CN",
   cleanUrls: true,
   base: "/weapp-dev/",

@@ -19,11 +19,11 @@ export default defineConfig({
 
 构建时，`dirs` 命中的**绝对路径**在以下文件类型中会被自动改写：
 
-| 文件类型 | 匹配形式 |
-| --- | --- |
-| WXML | `src="/assets/..."` 属性、`style="...url(/assets/...)..."` 内联样式 |
-| WXSS | `url(/assets/...)`、`url('/assets/...')`、`url("/assets/...")` |
-| JS | 字符串字面量中的 `"/assets/..."` |
+| 文件类型 | 匹配形式                                                            |
+| -------- | ------------------------------------------------------------------- |
+| WXML     | `src="/assets/..."` 属性、`style="...url(/assets/...)..."` 内联样式 |
+| WXSS     | `url(/assets/...)`、`url('/assets/...')`、`url("/assets/...")`      |
+| JS       | 字符串字面量中的 `"/assets/..."`                                    |
 
 ```html
 <!-- 改写前 -->

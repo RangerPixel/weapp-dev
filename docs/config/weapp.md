@@ -46,7 +46,7 @@
 
 - `alipay`（支付宝小程序，`.axml` / `.acss`）
 - `tt`（抖音小程序，`.ttml` / `.ttss`）
-:::
+  :::
 
 ## format
 
@@ -174,11 +174,11 @@ export default defineConfig({
 });
 ```
 
-| 字段 | 类型 | 默认 | 说明 |
-| --- | --- | --- | --- |
-| `enable` | `boolean` | `true` | 是否启用 npm 构建。关闭后即使有 dependencies 也跳过 |
-| `cache` | `boolean` | `true` | 是否缓存 `miniprogram-ci` 的构建结果，`package.json` 未变更时直接恢复缓存 |
-| `subPackages` | `Record<string, { dependencies: string[] }>` | - | 子包名 → 该子包专属依赖列表 |
+| 字段          | 类型                                         | 默认   | 说明                                                                      |
+| ------------- | -------------------------------------------- | ------ | ------------------------------------------------------------------------- |
+| `enable`      | `boolean`                                    | `true` | 是否启用 npm 构建。关闭后即使有 dependencies 也跳过                       |
+| `cache`       | `boolean`                                    | `true` | 是否缓存 `miniprogram-ci` 的构建结果，`package.json` 未变更时直接恢复缓存 |
+| `subPackages` | `Record<string, { dependencies: string[] }>` | -      | 子包名 → 该子包专属依赖列表                                               |
 
 ::: info
 只要根目录 `package.json` 的 `dependencies` 非空，npm 构建就会执行；没有依赖时任务自动跳过。`npm.mainPackage` 字段已废弃，无需配置。
@@ -241,12 +241,12 @@ export default defineConfig({
 });
 ```
 
-| 字段 | 类型 | 说明 |
-| --- | --- | --- |
-| `dirs` | `string[]` | 需要外置的资源目录（相对 `srcRoot`），命中这些目录的资源路径会被改写 |
-| `url` | `string` | 生产环境 CDN 前缀，`build` 时所有命中路径改写为该前缀 |
-| `dev.enabled` | `boolean` | 开发环境是否启用路径替换，默认 `false`（开发时不替换，资源仍走本地 dist） |
-| `dev.prefix` | `string` | 自定义开发前缀；不传则自动使用 Vite Dev Server 地址（优先局域网 IP，便于真机预览） |
+| 字段          | 类型       | 说明                                                                               |
+| ------------- | ---------- | ---------------------------------------------------------------------------------- |
+| `dirs`        | `string[]` | 需要外置的资源目录（相对 `srcRoot`），命中这些目录的资源路径会被改写               |
+| `url`         | `string`   | 生产环境 CDN 前缀，`build` 时所有命中路径改写为该前缀                              |
+| `dev.enabled` | `boolean`  | 开发环境是否启用路径替换，默认 `false`（开发时不替换，资源仍走本地 dist）          |
+| `dev.prefix`  | `string`   | 自定义开发前缀；不传则自动使用 Vite Dev Server 地址（优先局域网 IP，便于真机预览） |
 
 ::: warning 与 copy 配置的关系
 启用 CDN 后，框架会自动处理资源复制逻辑（被替换的资源不再复制到 dist）。`weapp.copy` 中应避免手动配置复制 CDN 目录下的文件。
