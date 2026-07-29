@@ -1,5 +1,11 @@
 # weapp-dev
 
+## 0.0.9
+
+### Patch Changes
+
+- [`2d4e924`](https://github.com/ReySun/weapp-dev/commit/2d4e924e9f9f5657972c607d48e44de7ec7d5b67) Thanks [@ReySun](https://github.com/ReySun)! - feat: 组件/页面的 wxss 转换支持 px2rpx rem2rpx 等属性
+
 ## 0.0.8
 
 ### Patch Changes
