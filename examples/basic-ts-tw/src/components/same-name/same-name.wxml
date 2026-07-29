@@ -1,0 +1,3 @@
+<view class="hello-card">
+  <text>{{text}}</text>
+</view>

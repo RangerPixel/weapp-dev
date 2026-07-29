@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<scroll-view  scroll-y type="list">
+<scroll-view scroll-y type="list">
   <!-- 页面模板文件 - 包含 Tailwind CSS 类名 -->
   <view class="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-3">
     <!-- 标题区域 -->
@@ -41,11 +41,16 @@
         </view>
         <!-- 复杂自定义值 -->
         <view class="col-span-2 p-[20rpx] border-[2rpx] border-dashed border-[#e74c3c] rounded">
-          <text class="text-[28rpx] text-[#2c3e50]">
-            p-[20rpx] border-[2rpx] border-[#e74c3c]
-          </text>
+          <text class="text-[28rpx] text-[#2c3e50]">p-[20rpx] border-[2rpx] border-[#e74c3c]</text>
         </view>
       </view>
+    </view>
+    <!-- 组件自动注册测试 -->
+    <view class="mt-8 w-full max-w-sm flex flex-col gap-3">
+      <same-name text="same-name 同名组件自动注册成功" />
+      <name-index text="name-index 同名组件自动注册成功" />
+      <van-button type="primary">Vant 按钮</van-button>
+      <t-button theme="primary">TDesign 按钮</t-button>
     </view>
     <!-- 响应式示例 -->
     <view class="mt-8 w-full max-w-md">
