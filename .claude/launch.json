@@ -32,6 +32,13 @@
       "port": 3000,
       "cwd": "examples/asset-replace",
       "description": "weapp-dev dev server for asset-replace example (Vite on :3000)"
+    },
+    {
+      "name": "docs",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["docs:dev", "--port", "5199", "--strictPort"],
+      "port": 5199,
+      "description": "VitePress docs dev server"
     }
   ]
 }
