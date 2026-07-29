@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "miniprogram-api-typings", "vitest/globals"],
+    "noEmit": true,
+    "incremental": false,
+    "tsBuildInfoFile": null
+  },
+  "include": ["./src/**/*", "tsdown.config.ts", "vitest.config.ts", "tests/**/*"],
+  "exclude": ["dist", "node_modules", "coverage"]
+}

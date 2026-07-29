@@ -2,6 +2,9 @@ node_modules
 dist
 .cache
 
+# 测试覆盖率
+coverage
+
 # vitepress
 docs/.vitepress/dist
 docs/.vitepress/cache

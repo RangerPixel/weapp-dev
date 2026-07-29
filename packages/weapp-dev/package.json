@@ -74,7 +74,10 @@
   },
   "scripts": {
     "dev": "tsdown --watch",
-    "build": "tsdown"
+    "build": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@weapp-core/escape": "^8.0.0",
@@ -95,9 +98,11 @@
   "devDependencies": {
     "@types/lodash-es": "catalog:",
     "@typescript/native-preview": "7.0.0-dev.20260705.1",
+    "@vitest/coverage-v8": "^4.1.10",
     "@weapp-dev/miniprogram-json-schema": "workspace:*",
     "miniprogram-api-typings": "catalog:",
-    "publint": "catalog:"
+    "publint": "catalog:",
+    "vitest": "^4.1.10"
   },
   "engines": {
     "node": ">=24"

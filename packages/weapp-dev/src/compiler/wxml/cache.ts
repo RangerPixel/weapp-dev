@@ -88,7 +88,7 @@ export function wxmlFileChangedInfo(file: FilePath, content: string) {
 
     isComponentChanged: !isEqualSet(beforeComponents, afterComponents),
     components: afterComponents,
-    vantComponents: [...afterComponents].filter((item) => item.startsWith("van-")),
+    detectedComponents: [...afterComponents],
     addedComponent: diffSetString(afterComponents, beforeComponents),
   };
 }

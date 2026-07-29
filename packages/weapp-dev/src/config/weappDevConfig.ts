@@ -4,6 +4,8 @@ import type { createContext } from "weapp-tailwindcss/core";
 import type { CopyOptions, CopyOptionsFn } from "@/compiler/copy/copy";
 import type { WeappPlatform } from "@/weapp/platform";
 
+import type { WeappDevComponentsConfig } from "./componentResolver";
+
 /**
  * 静态资源 CDN 配置
  *
@@ -141,6 +143,27 @@ export interface WeappDevConfig {
   cdn?: WeappDevCdnConfig;
 
   /**
+   * 组件自动注册配置
+   *
+   * - 'auto'：默认值，自动扫描 src/components + 内置 Vant/TDesign
+   * - 数组：自定义 resolver 列表
+   *
+   * @default 'auto'
+   *
+   * @example
+   * ```ts
+   * import { VantResolver, TDesignResolver } from 'weapp-dev/config';
+   *
+   * components: [
+   *   VantResolver({ from: 'src/vant-weapp' }),  // 手动复制 vant 源码改造
+   *   TDesignResolver(),
+   *   { match: 'nut-', from: '@nutui/nutui-miniprogram', template: '{name}/index' },
+   * ]
+   * ```
+   */
+  components?: WeappDevComponentsConfig;
+
+  /**
    * @experimental
    */
   tsdown?: {
@@ -212,6 +235,7 @@ export interface ResolvedWeappDevConfig extends WeappDevConfig {
   format: "esm" | "cjs";
   weappTwConfig: NonNullable<WeappDevConfig["weappTwConfig"]>;
   npm: NonNullable<WeappDevConfig["npm"]>;
+  components: NonNullable<WeappDevConfig["components"]>;
 }
 
 export const DefaultWeappDevConfig: ResolvedWeappDevConfig = {
@@ -232,4 +256,5 @@ export const DefaultWeappDevConfig: ResolvedWeappDevConfig = {
     enable: true,
     cache: true,
   },
+  components: "auto",
 };

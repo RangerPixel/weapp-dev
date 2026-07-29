@@ -18,6 +18,7 @@ import { getAllWxmlGlobPattern } from "@/weapp/wxml";
 
 import { copySrcFileToDist } from "../copy/copySrcFileToDist";
 import { isWxmlFileChanged, wxmlFileChangedInfo, setWxmlCache } from "./cache";
+import { getComponentRegistry } from "./componentRegistry";
 
 /**
  * 转换所有 WXML 文件
@@ -92,13 +93,13 @@ export async function transformWxmlFile(options: TransformWxmlFileOptions) {
 
       let start = null;
 
-      const { isClassChanged, classes, addedClass, vantComponents } = wxmlFileChangedInfo(
+      const { isClassChanged, classes, addedClass, detectedComponents } = wxmlFileChangedInfo(
         wxmlFile,
         content,
       );
 
       // 更新json文件
-      await copyOrReplaceJson({ wxmlFile, vantComponents, srcRoot, outDir });
+      await copyOrReplaceJson({ wxmlFile, detectedComponents, srcRoot, outDir });
 
       // json变更的时候，wxml不需要更新
       if (isJsonChanged) {
@@ -172,17 +173,17 @@ export async function transformWxmlFile(options: TransformWxmlFileOptions) {
 /**
  * 更新json文件
  *
- * 1. 如果wxml有三方组件，但是json未引入，则自动引入（目前仅支持vant）
+ * 1. 如果wxml有可识别的三方组件，但是json未引入，则自动引入
  * 2. 否则，复制该json文件
  */
 async function copyOrReplaceJson({
   wxmlFile,
-  vantComponents,
+  detectedComponents,
   srcRoot,
   outDir,
 }: {
   wxmlFile: string;
-  vantComponents: string[];
+  detectedComponents: string[];
   srcRoot: string;
   outDir: string;
 }) {
@@ -204,17 +205,24 @@ async function copyOrReplaceJson({
       json.usingComponents = {};
     }
 
-    // TODO 加入自定义components
-    let hasVantNotDefined = false;
-    vantComponents.forEach((component) => {
-      if (!json.usingComponents![component]) {
-        hasVantNotDefined = true;
-        // TODO 加入其他三方组件库
-        json.usingComponents![component] = `@vant/weapp/${component.replace("van-", "")}/index`;
+    const registry = getComponentRegistry();
+    let hasNewComponents = false;
+
+    detectedComponents.forEach((tag) => {
+      // 已注册的组件跳过（用户手动注册优先）
+      if (json.usingComponents![tag]) {
+        return;
+      }
+
+      // 通过 registry 解析组件路径
+      const path = registry.resolve(tag);
+      if (path) {
+        json.usingComponents![tag] = path;
+        hasNewComponents = true;
       }
     });
 
-    if (hasVantNotDefined) {
+    if (hasNewComponents) {
       ensureFile(
         srcJsonPath.replace(new RegExp(`/${srcRoot}/`), `/${outDir}/`),
         JSON.stringify(json, null, 2),

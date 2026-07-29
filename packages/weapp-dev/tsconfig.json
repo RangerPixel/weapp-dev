@@ -13,5 +13,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["./src/**/*", "tsdown.config.ts"]
+  "include": ["./src/**/*", "tsdown.config.ts"],
+  "exclude": ["dist", "node_modules", "tests", "coverage"]
 }

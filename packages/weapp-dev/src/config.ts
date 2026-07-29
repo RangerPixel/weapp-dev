@@ -6,6 +6,14 @@ import type { ConfigEnv, UserConfig as ViteUserConfig } from "vite";
 import type { TsdownViteUserConfig } from "./config/tsdownVite";
 import type { WeappDevConfig } from "./config/weappDevConfig";
 
+export {
+  LocalComponentsResolver,
+  VantResolver,
+  TDesignResolver,
+  type WeappDevComponentResolver,
+  type WeappDevComponentsConfig,
+} from "./config/componentResolver";
+
 /**
  * @description weapp-vite 的用户配置（扩展 Vite UserConfig）
  */
