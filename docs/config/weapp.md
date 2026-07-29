@@ -78,7 +78,7 @@ export default defineConfig({
 与 tsdown 不同的是：开发模式下会监听文件系统，**新增的匹配文件也会增量复制**。
 
 ::: warning
-`js` / `wxs` / `json` 文件已由内部逻辑处理（自动复制 + Vant 组件注册），配置 `copy` 时**不要**包含这类文件，避免重复处理。
+`js` / `wxs` / `json` 文件已由内部逻辑处理（自动复制 + 组件自动注册），配置 `copy` 时**不要**包含这类文件，避免重复处理。
 :::
 
 ## weappTwConfig
@@ -251,6 +251,79 @@ export default defineConfig({
 ::: warning 与 copy 配置的关系
 启用 CDN 后，框架会自动处理资源复制逻辑（被替换的资源不再复制到 dist）。`weapp.copy` 中应避免手动配置复制 CDN 目录下的文件。
 :::
+
+## components
+
+- **类型：** `'auto' | WeappDevComponentsConfigItem[]`
+- **默认：** `'auto'`
+
+组件自动注册配置，详见 [组件自动注册指南](/guide/components)。
+
+```ts
+interface WeappDevComponentResolver {
+  /**
+   * 组件标签前缀（如 'van-'）。省略时为本地目录扫描模式
+   */
+  match?: string;
+  /**
+   * npm 包名或本地目录路径
+   */
+  from: string;
+  /**
+   * 路径模板，{name} 会被替换为去掉前缀的组件名
+   * @default '{name}/index'
+   */
+  template?: string;
+  /**
+   * 个别组件路径覆盖
+   */
+  overrides?: Record<string, string>;
+  /**
+   * 是否禁用
+   * @default true
+   */
+  enable?: boolean;
+}
+```
+
+默认配置（`'auto'`）等效于：
+
+```ts
+import { LocalComponentsResolver, VantResolver, TDesignResolver } from "weapp-dev/config";
+
+components: [
+  LocalComponentsResolver(), // 扫描 src/components
+  VantResolver(), // 识别 <van-*>
+  TDesignResolver(), // 识别 <t-*>
+];
+```
+
+配置示例：
+
+```ts
+import { defineConfig, VantResolver, LocalComponentsResolver } from "weapp-dev/config";
+
+export default defineConfig({
+  weapp: {
+    components: [
+      // 扫描多个本地组件目录（相对 srcRoot）
+      LocalComponentsResolver(["components", "biz-components"]),
+
+      // 手动复制 vant-weapp 源码改造（相对 srcRoot）
+      VantResolver({ from: "vant-weapp" }),
+
+      // 添加 NutUI
+      {
+        match: "nut-",
+        from: "@nutui/nutui-miniprogram",
+        template: "{name}/index",
+      },
+    ],
+  },
+});
+```
+
+完整使用场景见 [组件自动注册指南](/guide/components#自定义组件库-resolver)。
 
 ## tsdown <Badge type="warning" text="experimental" />
 

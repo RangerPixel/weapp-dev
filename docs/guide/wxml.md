@@ -1,37 +1,32 @@
-# WXML 与组件
+# WXML 转译
 
-WXML 转译阶段负责三件事：Tailwind 类名转义、CDN 资源路径替换、**Vant 组件自动注册**。
+WXML 转译阶段负责三件事：Tailwind 类名转义、CDN 资源路径替换、组件自动注册。
 
-## Vant 组件自动注册
+## Tailwind 类名转义
 
-在 WXML 中直接使用 `<van-*>` 组件，无需手动在页面 JSON 中维护 `usingComponents`：
+WXML 中的 Tailwind 类名会自动转义为小程序兼容的格式：
 
 ```html
-<!-- src/pages/index/index.wxml -->
-<van-button type="primary">按钮</van-button>
-<van-icon name="success" />
+<!-- 源码 -->
+<view class="w-[100px] h-[50px] bg-[#123456]"></view>
+
+<!-- 转译后 -->
+<view class="w-_100px_ h-_50px_ bg-_h_123456_"></view>
 ```
 
-构建时会自动检测未注册的 `van-*` 组件，写入 dist 中对应的页面 JSON：
+详见 [Tailwind CSS 指南](/guide/tailwindcss)。
 
-```json
-{
-  "usingComponents": {
-    "van-button": "@vant/weapp/button/index",
-    "van-icon": "@vant/weapp/icon/index"
-  }
-}
+## 组件自动注册
+
+在 WXML 中直接使用组件，无需手动在页面 JSON 中维护 `usingComponents`：
+
+```html
+<van-button type="primary">按钮</van-button> <my-card title="标题" />
 ```
 
-已注册的组件不会重复添加；没有新增组件时页面 JSON 按原样复制。
+构建时会自动检测未注册的组件，写入 dist 中对应的页面 JSON。
 
-::: tip 前提
-项目需要安装 `@vant/weapp` 并完成 [npm 构建](/guide/npm)，这样 `@vant/weapp/*` 路径才能在 dist 中解析。
-:::
-
-::: info 目前仅支持 Vant
-其他组件库的自动注册尚未实现，请按原生方式在页面/组件 JSON 中手动配置 `usingComponents`。
-:::
+详见 [组件自动注册指南](/guide/components)。
 
 ## 开发模式的行为
 
